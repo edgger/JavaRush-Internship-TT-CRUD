@@ -1,18 +1,21 @@
 package guru.optimal.crud;
 
+import guru.optimal.crud.config.SpringConfig;
+import guru.optimal.crud.service.TestBean;
 import org.hibernate.HibernateException;
 import org.hibernate.Metamodel;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.persistence.metamodel.EntityType;
 
 import java.util.Map;
 
 public class Main {
-    private static final SessionFactory ourSessionFactory;
+    /*private static final SessionFactory ourSessionFactory;
 
     static {
         try {
@@ -27,10 +30,10 @@ public class Main {
 
     public static Session getSession() throws HibernateException {
         return ourSessionFactory.openSession();
-    }
+    }*/
 
     public static void main(final String[] args) throws Exception {
-        final Session session = getSession();
+        /*final Session session = getSession();
         try {
             System.out.println("querying all the managed entities...");
             final Metamodel metamodel = session.getSessionFactory().getMetamodel();
@@ -44,6 +47,13 @@ public class Main {
             }
         } finally {
             session.close();
-        }
+        }*/
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(SpringConfig.class);
+        context.scan("guru.optimal.crud");
+        context.refresh();
+
+        TestBean getTestBean = context.getBean(TestBean.class);
+        System.out.println(getTestBean.getName()+ " is here!");
     }
 }
