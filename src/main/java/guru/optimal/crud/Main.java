@@ -1,3 +1,5 @@
+package guru.optimal.crud;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Metamodel;
 import org.hibernate.query.Query;
