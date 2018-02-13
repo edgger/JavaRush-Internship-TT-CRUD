@@ -67,6 +67,7 @@ public class SpringConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put(AvailableSettings.SHOW_SQL, env.getProperty("hibernate.show_sql"));
+        properties.put(AvailableSettings.FORMAT_SQL, env.getProperty("hibernate.format_sql"));
         properties.put(AvailableSettings.HBM2DDL_AUTO, env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put(AvailableSettings.DIALECT, env.getProperty("hibernate.dialect"));
         return properties;

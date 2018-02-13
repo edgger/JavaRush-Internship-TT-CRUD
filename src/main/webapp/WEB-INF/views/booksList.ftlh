@@ -19,11 +19,11 @@
     <tr>
         <td>${book.id}</td>
         <td>${book.title}</td>
-        <td>${book.description}</td>
-        <td>${book.author}</td>
-        <td>${book.isbn}</td>
-        <td>${book.printYear}</td>
-        <td>${book.readAlready}</td>
+        <td>${book.description!}</td>
+        <td>${book.author!}</td>
+        <td>${book.isbn!}</td>
+        <td>${book.printYear!}</td>
+        <td>${book.readAlready?string('yes', 'no')!}</td>
     </tr>
     </#list>
 </table>
