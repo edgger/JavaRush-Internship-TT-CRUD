@@ -1,11 +1,10 @@
-package guru.optimal.crud.dao;
+package guru.optimal.crud.service;
 
 import guru.optimal.crud.entity.Book;
 
 import java.util.List;
 
-public interface BookDao {
-
+public interface BookService {
     public void addBook(Book book);
     public void updateBook(Book book);
     public List<Book> listBooks();
