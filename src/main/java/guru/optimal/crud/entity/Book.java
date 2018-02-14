@@ -2,23 +2,30 @@ package guru.optimal.crud.entity;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Book")
 @Table(name = "book")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
     @Column(name = "title")
     private String title;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "author")
     private String author;
+
     @Column(name = "isbn")
     private String isbn;
+
     @Column(name = "printYear")
     private int printYear;
+
     @Column(name = "readAlready")
     private boolean readAlready;
 

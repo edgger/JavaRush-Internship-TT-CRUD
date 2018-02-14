@@ -28,7 +28,7 @@ public class SpringConfig {
     @Autowired
     private Environment env;
 
-    @Bean
+    /*@Bean
     public TestBean getTestBean() {
         return new TestBean("Simple test");
     }
@@ -38,7 +38,7 @@ public class SpringConfig {
     @Scope("prototype")
     public Book getBook() {
         return new Book();
-    }
+    }*/
 
     @Bean
     public SessionFactory sessionFactory() {
