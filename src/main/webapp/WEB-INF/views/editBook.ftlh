@@ -19,11 +19,9 @@
     <label class="w3-text-teal"><b>Description</b>
     <input class="w3-input w3-border w3-light-grey" name="description" type="text" <#if book??>value=${book.description!}</#if>>
     </label>
-<#if book??>
     <label class="w3-text-teal"><b>Author</b>
-    <input class="w3-input w3-border w3-light-grey" name="author" type="text">
+    <input class="w3-input w3-border w3-light-grey" name="author" type="text" <#if book??>value=${book.author!} readonly</#if>>
     </label>
-</#if>
     <label class="w3-text-teal"><b>ISBN</b>
     <input class="w3-input w3-border w3-light-grey" name="isbn" type="text" <#if book??>value=${book.isbn!}</#if>>
     </label>
