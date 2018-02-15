@@ -1,7 +1,5 @@
 package guru.optimal.crud.config;
 
-import guru.optimal.crud.entity.Book;
-import guru.optimal.crud.service.TestBean;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
@@ -27,18 +25,6 @@ import java.util.Properties;
 public class SpringConfig {
     @Autowired
     private Environment env;
-
-    /*@Bean
-    public TestBean getTestBean() {
-        return new TestBean("Simple test");
-    }
-
-    @Bean
-    @Lazy
-    @Scope("prototype")
-    public Book getBook() {
-        return new Book();
-    }*/
 
     @Bean
     public SessionFactory sessionFactory() {

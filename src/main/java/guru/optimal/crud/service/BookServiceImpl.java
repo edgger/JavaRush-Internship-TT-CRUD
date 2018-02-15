@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class BookServiceImpl implements BookService {
 
     private BookDao bookDao;
@@ -44,8 +45,38 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Book> getBooksRange(int start) {
+        return bookDao.getBooksRange(start);
+    }
+
+    @Override
     @Transactional
     public void removeBook(int id) {
         bookDao.removeBook(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public long getBooksTotalCount() {
+        return bookDao.getBooksTotalCount();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Book> getBooksByField(String field, String value) {
+        String fieldLC = field.toLowerCase();
+        if ("id".equals(fieldLC)){
+            try {
+                int intValue = Integer.parseInt(value);
+                return Collections.singletonList(getBookById(intValue));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("Wrong value for ID");
+            }
+        } else if ("title".equals(fieldLC)||"author".equals(fieldLC)){
+            return bookDao.getBooksByField(field, value);
+        } else {
+            throw new IllegalArgumentException("Wrong field name");
+        }
     }
 }

@@ -6,15 +6,15 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
+<#include "templates/header.ftlh">
 <div class="w3-container w3-teal">
     <h2><#if book??>Edit book<#else>Add book</#if></h2>
 </div>
-
-<form name="book" action=<#if book??>"/editBook"<#else>"/addBook"</#if> method="post" class="w3-container">
-    <input type="hidden" name="id" <#if book??>value=${book.id}</#if>>
+<form name="bookData" action=<#if book??>"/editBook"<#else>"/addBook"</#if> method="post" class="w3-container">
+    <#if book??><input type="hidden" name="id" value=${book.id}></#if>
 
     <label class="w3-text-teal"><b>Title</b>
-    <input class="w3-input w3-border w3-light-grey" name="title" type="text" <#if book??>value=${book.title}</#if>>
+    <input class="w3-input w3-border w3-light-grey" name="title" type="text" <#if book??>value=${book.title!}</#if>>
     </label>
     <label class="w3-text-teal"><b>Description</b>
     <input class="w3-input w3-border w3-light-grey" name="description" type="text" <#if book??>value=${book.description!}</#if>>
@@ -26,11 +26,10 @@
     <input class="w3-input w3-border w3-light-grey" name="isbn" type="text" <#if book??>value=${book.isbn!}</#if>>
     </label>
     <label class="w3-text-teal"><b>Print year</b>
-    <input class="w3-input w3-border w3-light-grey" name="printYear" type="text" <#if book??>value=${book.printYear!}</#if>>
+    <input class="w3-input w3-border w3-light-grey" name="printYear" type="text" pattern="\d" <#if book??>value=${book.printYear!}</#if>>
     </label>
     <br>
     <button type="submit" value="OK" class="w3-btn w3-blue-grey">Submit</button>
-    <#--<a href="/" class="w3-btn w3-blue-grey"></a>-->
     <a href="/" class="w3-btn w3-blue-grey">Cancel</a>
 </form>
 </body>

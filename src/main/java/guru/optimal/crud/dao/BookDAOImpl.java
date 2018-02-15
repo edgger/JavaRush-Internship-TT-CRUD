@@ -44,11 +44,36 @@ public class BookDAOImpl implements BookDao {
     }
 
     @Override
+    public List<Book> getBooksRange(int start) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Book> booksList = session.createQuery("from Book")
+                .setFirstResult(start)
+                .setMaxResults(10)
+                .list();
+        return booksList;
+    }
+
+    @Override
     public void removeBook(int id) {
         Session session = sessionFactory.getCurrentSession();
         Book book = session.load(Book.class, id);
         if (book!=null){
             session.delete(book);
         }
+    }
+
+    @Override
+    public long getBooksTotalCount() {
+        Session session = sessionFactory.getCurrentSession();
+        Long countResults = (Long) session.createQuery("select count (b.id) from Book b").uniqueResult();
+        return countResults;
+    }
+
+    @Override
+    public List<Book> getBooksByField(String field, String value) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Book> booksList = session.createQuery("from Book b where b."+field+" = :fieldValue")
+                .setParameter("fieldValue",value).list();
+        return booksList;
     }
 }

@@ -6,13 +6,11 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-<div class="w3-container w3-blue-grey w3-opacity">
-    <h1>Zed's CRUD Books</h1>
-</div>
+<#include "WEB-INF/views/templates/header.ftlh">
 <div class="w3-container w3-center">
     <table class="w3-table-all w3-striped">
         <tr class="w3-teal">
-            <th>Id</th>
+            <th>ID</th>
             <th>Title</th>
             <th>Description</th>
             <th>Author</th>
@@ -36,19 +34,24 @@
             <a href="/read/${book.id}" class="w3-button w3-small w3-teal w3-round">Read</a>
         </td>
     </tr>
+    <#else>
+    <tr>
+        <td>No available books</td>
+    </tr>
     </#list>
     </table>
     <a href="/addBook" class="w3-button w3-block w3-teal">Add</a>
+    <#if lastPageNumber??>
     <div class="w3-center">
         <div class="w3-bar">
-            <a href="#" class="w3-button">&laquo;</a>
-            <a href="#" class="w3-button">1</a>
-            <a href="#" class="w3-button">2</a>
-            <a href="#" class="w3-button">3</a>
-            <a href="#" class="w3-button">4</a>
-            <a href="#" class="w3-button">&raquo;</a>
+            <a href="/" class="w3-button">First</a>
+            <#list 0..lastPageNumber as x>
+                <a href="/?page=${x}" class="w3-button">${x+1}</a>
+            </#list>
+            <a href="/?page=${lastPageNumber}" class="w3-button">Last</a>
         </div>
     </div>
+    </#if>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@ package guru.optimal.crud.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "Book")
+@Entity
 @Table(name = "book")
 public class Book {
 
