@@ -2,7 +2,7 @@
 .idea/
 *.iml
 *.iws
-/out/
+out/
 lib/
 
 # Maven

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -22,16 +20,16 @@ public class BookController {
     public String index(@RequestParam(value = "page", required = false) Integer page, Model model) {
         long totalCount = bookService.getBooksTotalCount();
         int pageSize = 10;
-        int lastPageNumber = (int) (Math.ceil(totalCount / pageSize));
+        int lastPageNumber = (int) ((totalCount / pageSize) + (totalCount % pageSize));
         model.addAttribute("lastPageNumber", lastPageNumber);
 
         if (page == null) {
             model.addAttribute("books", bookService.getBooksRange(0));
         } else {
             if (lastPageNumber < page) {
-                model.addAttribute("books", bookService.getBooksRange((lastPageNumber-1)*10));
+                model.addAttribute("books", bookService.getBooksRange((lastPageNumber - 1) * 10));
             } else {
-                model.addAttribute("books", bookService.getBooksRange(page*10));
+                model.addAttribute("books", bookService.getBooksRange(page * 10));
             }
         }
         return "index";
@@ -78,7 +76,7 @@ public class BookController {
 
     @PostMapping("/searchBook")
     public String searchBook(@RequestParam(value = "field", required = false) String field, @RequestParam(value = "value", required = false) String value, Model model) {
-        if (field==null){
+        if (field == null) {
             return "redirect:/";
         }
         try {
@@ -87,7 +85,7 @@ public class BookController {
             return "index";
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            return index(0,model);
+            return index(0, model);
         }
     }
 }

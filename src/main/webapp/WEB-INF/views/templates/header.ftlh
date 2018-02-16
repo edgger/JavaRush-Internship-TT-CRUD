@@ -8,7 +8,7 @@
                 <option value="title">Title</option>
                 <option value="author">Author</option>
             </select>
-            <input class="w3-input w3-light-grey w3-container" name="value" type="text">
+            <input class="w3-input w3-light-grey w3-container" name="value" type="text" pattern="[A-Za-zА-Яа-яЁё0-9]{,100}">
         </div>
         <button type="submit" value="OK" class="w3-btn w3-teal w3-large">Search</button>
     </form>

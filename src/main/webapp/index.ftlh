@@ -26,7 +26,7 @@
         <td>${book.description!}</td>
         <td>${book.author!}</td>
         <td>${book.isbn!}</td>
-        <td>${book.printYear!}</td>
+        <td>${book.printYear?string.computer!}</td>
         <td>${book.readAlready?string('yes', 'no')!}</td>
         <td>
             <a href="/book/${book.id}" class="w3-button w3-small w3-teal w3-round">Edit</a>
@@ -45,10 +45,10 @@
     <div class="w3-center">
         <div class="w3-bar">
             <a href="/" class="w3-button">First</a>
-            <#list 0..lastPageNumber as x>
-                <a href="/?page=${x}" class="w3-button">${x+1}</a>
+            <#list 1..lastPageNumber as x>
+                <a href="/?page=${x-1}" class="w3-button">${x}</a>
             </#list>
-            <a href="/?page=${lastPageNumber}" class="w3-button">Last</a>
+            <a href="/?page=${lastPageNumber-1}" class="w3-button">Last</a>
         </div>
     </div>
     </#if>
